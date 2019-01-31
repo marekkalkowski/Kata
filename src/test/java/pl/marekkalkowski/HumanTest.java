@@ -30,7 +30,7 @@ class HumanTest {
     }
 
     @Test
-    @DisplayName("Should return true if second name will be first")
+    @DisplayName("Should return false if second name will not be first")
     void sortByNameUncorectlyASC() {
 
         //arrange
@@ -43,5 +43,21 @@ class HumanTest {
 
         //assert
         assertEquals( false,result.get(0).getName().equals("Marek"));
+    }
+
+    @Test
+    @DisplayName("Should return true if second name will be first")
+    void sortByNameCorectlyAscUsingLambda() {
+
+        //arrange
+
+        humans.add(new Human("Marek", 12));
+        humans.add(new Human("Adam", 23));
+
+        //act
+        List<Human> result = new Human().sortWithLambda(humans);
+
+        //assert
+        assertEquals( true,result.get(0).getName().equals("Adam"));
     }
 }
