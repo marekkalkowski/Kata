@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FizzBuzzTest {
 
-private FizzBuzz fizzBuzz;
+    private FizzBuzz fizzBuzz;
 
     @BeforeEach
     void init() {
@@ -30,7 +30,7 @@ private FizzBuzz fizzBuzz;
 
     @Test
     @DisplayName("return fizz divisible by 3 ")
-    void returFizzWhenDivisibileBy3(){
+    void returFizzWhenDivisibileBy3() {
         //arrange
         int number = 3;
 
@@ -43,7 +43,7 @@ private FizzBuzz fizzBuzz;
 
     @Test
     @DisplayName("return Buzz divisible by 5 ")
-    void returBuzzWhenDivisibileBy5(){
+    void returBuzzWhenDivisibileBy5() {
         //arrange
         int number = 5;
 
@@ -56,7 +56,7 @@ private FizzBuzz fizzBuzz;
 
     @Test
     @DisplayName("return FizzBuzz")
-    void retrunFizzBuzzWhenDivisibleBy3And5(){
+    void retrunFizzBuzzWhenDivisibleBy3And5() {
         //arrange
         int number = 15;
 
@@ -64,6 +64,6 @@ private FizzBuzz fizzBuzz;
         String result = fizzBuzz.fizzBuzzKata(15);
 
         //assert
-        assertEquals("FizzBuzz",result);
+        assertEquals("FizzBuzz", result);
     }
 }
