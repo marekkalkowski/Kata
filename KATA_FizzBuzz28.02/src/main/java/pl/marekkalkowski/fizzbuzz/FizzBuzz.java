@@ -1,4 +1,4 @@
-package pl.marekkalkowski;
+package pl.marekkalkowski.fizzbuzz;
 
 public class FizzBuzz {
 

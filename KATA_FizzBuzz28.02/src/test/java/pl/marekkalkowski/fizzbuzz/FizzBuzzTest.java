@@ -1,8 +1,9 @@
-package pl.marekkalkowski;
+package pl.marekkalkowski.fizzbuzz;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.marekkalkowski.fizzbuzz.FizzBuzz;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
