@@ -4,7 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class NameInverterTest {
@@ -27,7 +28,7 @@ public class NameInverterTest {
 
         //act
         try {
-             result = nameInverter.invert(name);
+            result = nameInverter.invert(name);
         } catch (Throwable expected) {
             assertEquals(NullPointerException.class, expected.getClass());
         }
@@ -35,38 +36,56 @@ public class NameInverterTest {
 
     @Test
     @DisplayName("return IllegalArgumentException when epmty string  ")
-    void returnIlegalArgumentExceptionWhenEmptyString (){
+    void returnIlegalArgumentExceptionWhenEmptyString() {
         //arrange
         name = "";
         //act
         try {
             result = nameInverter.invert(name);
-        }catch(IllegalArgumentException e){
-            assertEquals(IllegalArgumentException.class,e.getClass());
+        } catch (IllegalArgumentException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
     @Test
     @DisplayName("return IllegalArgumentException when white spaces ")
-    void returnIlegalArgumentExceptionWhenWhiteSpaces (){
+    void returnIlegalArgumentExceptionWhenWhiteSpaces() {
         //arrange
         name = "     ";
         //act
         try {
             result = nameInverter.invert(name);
-        }catch(IllegalArgumentException e){
-            assertEquals(IllegalArgumentException.class,e.getClass());
+        } catch (IllegalArgumentException e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
     @Test
-    @DisplayName("return first name whene only firast name  ")
-    void returnFirstNameWhenOnlyFirstName (){
-        //arrange
-        name = "Marek";
-        //act
-       result = nameInverter.invert(name);
-        //assert
-        assertEquals("Marek",result);
+    @DisplayName("return first name whene only first name even with white spaces ")
+    void returnFirstNameWhenOnlyFirstName() {
+        assertThat(nameInverter.invert("Marek")).isEqualTo("Marek");
+        assertThat(nameInverter.invert("   Marek   ")).isEqualTo("Marek");
     }
+
+    @Test
+    @DisplayName("return lastCommaFirst ")
+    void shouldReturnLastCommaFisrt() {
+        assertThat(nameInverter.invert("Marek Kalkowski")).isEqualTo("Kalkowski, Marek");
+        assertThat(nameInverter.invert("Marek      Kalkowski")).isEqualTo("Kalkowski, Marek");
+    }
+
+    @Test
+    @DisplayName("return lastCommaFirst without honorifics ")
+    void shouldReturnLastCommaFisrtWithoutHonorifics() {
+        assertThat(nameInverter.invert("Mr. Marek Kalkowski")).isEqualTo("Kalkowski, Marek");
+        assertThat(nameInverter.invert("Mrs. Dorota Kalkowska")).isEqualTo("Kalkowska, Dorota");
+    }
+
+    @Test
+    @DisplayName("return lastCommaFirst with postnominals")
+    void shouldReturnLastCommaFisrtWithPostnominals() {
+        assertThat(nameInverter.invert("Marek Kalkowski Jr.")).isEqualTo("Kalkowski, Marek Jr.");
+        assertThat(nameInverter.invert("Dorota Kalkowska Sr. Phd.")).isEqualTo("Kalkowska, Dorota Sr. Phd.");
+    }
+
 }
