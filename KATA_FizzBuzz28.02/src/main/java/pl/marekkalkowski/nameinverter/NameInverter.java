@@ -8,7 +8,6 @@ import java.util.List;
 public class NameInverter {
 
     private Honorific honorific = new Honorific();
-    private PostNominals postNominals = new PostNominals();
 
     public String invert(String name) {
 
